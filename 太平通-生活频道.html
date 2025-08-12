@@ -1,0 +1,559 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太平生活频道</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36CFC9',
+                        accent: '#FF7D00',
+                        neutral: '#F5F7FA',
+                        'text-primary': '#1D2129',
+                        'text-secondary': '#4E5969',
+                        'text-tertiary': '#86909C'
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-4px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-text-primary">
+    <!-- 顶部导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <h1 class="text-[18px] font-semibold text-text-primary">生活频道</h1>
+            <div class="flex items-center space-x-5">
+                <button class="text-text-secondary hover:text-primary transition-colors">
+                    <i class="fa fa-search text-lg"></i>
+                </button>
+                <button class="text-text-secondary hover:text-primary transition-colors relative">
+                    <i class="fa fa-bell text-lg"></i>
+                    <span class="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full text-white text-[10px] flex items-center justify-center">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="pt-14 pb-16">
+        <!-- 轮播运营位 -->
+        <section class="relative h-[180px] overflow-hidden">
+            <div class="carousel relative h-full">
+                <div class="carousel-items flex h-full transition-transform duration-500">
+                    <div class="carousel-item min-w-full h-full">
+                        <img src="https://picsum.photos/600/300?random=1" alt="太平养老社区活动宣传" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+                            <h3 class="text-lg font-medium">太平养老社区开放日</h3>
+                            <p class="text-sm opacity-90">预约参观享专属福利</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item min-w-full h-full">
+                        <img src="https://picsum.photos/600/300?random=2" alt="助农商品推广活动" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+                            <h3 class="text-lg font-medium">助农专区新上线</h3>
+                            <p class="text-sm opacity-90">购买即享双重积分</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item min-w-full h-full">
+                        <img src="https://picsum.photos/600/300?random=3" alt="定制商品特惠活动" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent text-white">
+                            <h3 class="text-lg font-medium">定制商品限时特惠</h3>
+                            <p class="text-sm opacity-90">会员专享8折优惠</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播指示器 -->
+                <div class="absolute bottom-14 left-0 right-0 flex justify-center space-x-2">
+                    <button class="w-2.5 h-2.5 rounded-full bg-white carousel-indicator active"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/50 carousel-indicator"></button>
+                    <button class="w-2.5 h-2.5 rounded-full bg-white/50 carousel-indicator"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 快捷入口 -->
+        <section class="bg-white py-4">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-4 gap-2">
+                    <a href="#" class="flex flex-col items-center p-2">
+                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                            <i class="fa fa-home text-primary text-xl"></i>
+                        </div>
+                        <span class="text-xs text-text-secondary">养老社区</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-2">
+                        <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
+                            <i class="fa fa-medkit text-secondary text-xl"></i>
+                        </div>
+                        <span class="text-xs text-text-secondary">康复医院</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-2">
+                        <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-2">
+                            <i class="fa fa-user-md text-accent text-xl"></i>
+                        </div>
+                        <span class="text-xs text-text-secondary">居家养老</span>
+                    </a>
+                    <a href="#" class="flex flex-col items-center p-2">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-2">
+                            <i class="fa fa-shopping-bag text-purple-500 text-xl"></i>
+                        </div>
+                        <span class="text-xs text-text-secondary">全部商品</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 养老生活板块 -->
+        <section class="py-5 bg-neutral">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-[18px] font-semibold">养老生活</h2>
+                    <a href="#" class="text-primary text-sm flex items-center">
+                        查看全部 <i class="fa fa-angle-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- 太平养老社区 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                        <div class="relative h-40">
+                            <img src="https://picsum.photos/400/300?random=10" alt="太平养老社区环境" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-primary text-white text-xs py-1 px-2 rounded-full">
+                                高端社区
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">太平养老社区</h3>
+                            <p class="text-text-secondary text-sm line-clamp-2 mb-3">
+                                提供全方位养老服务，舒适居住环境，专业医疗团队，丰富文化活动。
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent text-sm font-medium">预约参观</span>
+                                <i class="fa fa-arrow-right text-primary text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 太平康复医院 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                        <div class="relative h-40">
+                            <img src="https://picsum.photos/400/300?random=11" alt="太平康复医院设施" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-secondary text-white text-xs py-1 px-2 rounded-full">
+                                专业医疗
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">太平康复医院</h3>
+                            <p class="text-text-secondary text-sm line-clamp-2 mb-3">
+                                专注于老年病康复治疗，配备先进医疗设备和资深康复师团队。
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent text-sm font-medium">了解详情</span>
+                                <i class="fa fa-arrow-right text-primary text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 居家养老服务 -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden card-hover">
+                        <div class="relative h-40">
+                            <img src="https://picsum.photos/400/300?random=12" alt="居家养老服务展示" class="w-full h-full object-cover">
+                            <div class="absolute top-3 left-3 bg-accent text-white text-xs py-1 px-2 rounded-full">
+                                上门服务
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-2">居家养老服务</h3>
+                            <p class="text-text-secondary text-sm line-clamp-2 mb-3">
+                                专业护理人员上门服务，包括日常照料、健康监测、康复护理等。
+                            </p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-accent text-sm font-medium">立即预约</span>
+                                <i class="fa fa-arrow-right text-primary text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 运营位 -->
+        <section class="py-4 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="rounded-xl overflow-hidden relative">
+                    <img src="https://picsum.photos/800/200?random=20" alt="太平养老保障计划推广" class="w-full h-36 md:h-48 object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent flex flex-col justify-center p-6">
+                        <h3 class="text-white text-xl md:text-2xl font-bold mb-2 text-shadow">养老保障计划</h3>
+                        <p class="text-white/90 text-sm md:text-base mb-3 max-w-[200px]">为您的退休生活提供全方位保障</p>
+                        <button class="bg-white text-primary text-sm py-1.5 px-4 rounded-full w-fit hover:bg-opacity-90 transition-colors">
+                            了解详情
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 太平定制商品 -->
+        <section class="py-5 bg-neutral">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-[18px] font-semibold">太平定制商品</h2>
+                    <a href="#" class="text-primary text-sm flex items-center">
+                        更多商品 <i class="fa fa-angle-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- 定制商品1 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="relative h-36">
+                            <img src="https://picsum.photos/300/300?random=30" alt="太平定制健康手环" class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-accent text-white text-xs py-0.5 px-2 rounded">
+                                热销
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-sm line-clamp-2 mb-1">太平定制健康手环</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">¥199</span>
+                                <button class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-shopping-cart text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 定制商品2 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="relative h-36">
+                            <img src="https://picsum.photos/300/300?random=31" alt="太平定制体检套餐" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-sm line-clamp-2 mb-1">太平定制体检套餐</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">¥599</span>
+                                <button class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-shopping-cart text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 定制商品3 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="relative h-36">
+                            <img src="https://picsum.photos/300/300?random=32" alt="太平定制保险礼盒" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-sm line-clamp-2 mb-1">太平定制保险礼盒</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">¥299</span>
+                                <button class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-shopping-cart text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 定制商品4 -->
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="relative h-36">
+                            <img src="https://picsum.photos/300/300?random=33" alt="太平定制旅行套装" class="w-full h-full object-cover">
+                            <div class="absolute top-2 right-2 bg-primary text-white text-xs py-0.5 px-2 rounded">
+                                新品
+                            </div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-sm line-clamp-2 mb-1">太平定制旅行套装</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="text-accent font-semibold">¥359</span>
+                                <button class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                    <i class="fa fa-shopping-cart text-xs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 太平助农商品 -->
+        <section class="py-5 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-[18px] font-semibold">太平助农商品</h2>
+                    <a href="#" class="text-primary text-sm flex items-center">
+                        更多助农 <i class="fa fa-angle-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 助农商品1 -->
+                    <div class="flex bg-neutral rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="w-1/3">
+                            <img src="https://picsum.photos/300/300?random=40" alt="扶贫地区有机大米" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-2/3 p-3 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="bg-green-100 text-green-600 text-xs py-0.5 px-2 rounded-full mr-2">助农</span>
+                                    <span class="text-text-tertiary text-xs"></span>
+                                </div>
+                                <h3 class="font-medium text-sm mb-1">有机五常大米 5kg</h3>
+                                <p class="text-text-secondary text-xs line-clamp-2">
+                                    来自扶贫定点地区，生态种植，口感醇厚，营养丰富。
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-accent font-semibold">¥89</span>
+                                <button class="bg-primary text-white text-xs py-1 px-3 rounded-full hover:bg-primary/90 transition-colors">
+                                    立即购买
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 助农商品2 -->
+                    <div class="flex bg-neutral rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="w-1/3">
+                            <img src="https://picsum.photos/300/300?random=41" alt="扶贫地区野生蜂蜜" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-2/3 p-3 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="bg-green-100 text-green-600 text-xs py-0.5 px-2 rounded-full mr-2">助农</span>
+                                    <span class="text-text-tertiary text-xs">甘肃·两当县</span>
+                                </div>
+                                <h3 class="font-medium text-sm mb-1">秦岭野生蜂蜜 500g</h3>
+                                <p class="text-text-secondary text-xs line-clamp-2">
+                                    天然野生蜂蜜，无添加，口感纯正，来自深山贫困户。
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-accent font-semibold">¥68</span>
+                                <button class="bg-primary text-white text-xs py-1 px-3 rounded-full hover:bg-primary/90 transition-colors">
+                                    立即购买
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 助农商品3 -->
+                    <div class="flex bg-neutral rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="w-1/3">
+                            <img src="https://picsum.photos/300/300?random=42" alt="扶贫地区高山茶叶" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-2/3 p-3 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="bg-green-100 text-green-600 text-xs py-0.5 px-2 rounded-full mr-2">助农</span>
+                                    <span class="text-text-tertiary text-xs">六安·裕安区</span>
+                                </div>
+                                <h3 class="font-medium text-sm mb-1">高山云雾绿茶 200g</h3>
+                                <p class="text-text-secondary text-xs line-clamp-2">
+                                    海拔1800米以上种植，手工采摘，清香回甘，帮助茶农增收。
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-accent font-semibold">¥128</span>
+                                <button class="bg-primary text-white text-xs py-1 px-3 rounded-full hover:bg-primary/90 transition-colors">
+                                    立即购买
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 助农商品4 -->
+                    <div class="flex bg-neutral rounded-xl overflow-hidden shadow-sm card-hover">
+                        <div class="w-1/3">
+                            <img src="https://picsum.photos/300/300?random=43" alt="扶贫地区有机核桃" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-2/3 p-3 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <span class="bg-green-100 text-green-600 text-xs py-0.5 px-2 rounded-full mr-2">助农</span>
+                                    <span class="text-text-tertiary text-xs">六安·裕安区</span>
+                                </div>
+                                <h3 class="font-medium text-sm mb-1">有机薄皮核桃 1kg</h3>
+                                <p class="text-text-secondary text-xs line-clamp-2">
+                                    来自干旱山区，自然生长，营养丰富，助力当地脱贫。
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-accent font-semibold">¥56</span>
+                                <button class="bg-primary text-white text-xs py-1 px-3 rounded-full hover:bg-primary/90 transition-colors">
+                                    立即购买
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部运营位 -->
+        <section class="py-4 bg-neutral">
+            <div class="container mx-auto px-4">
+                <div class="bg-gradient-to-r from-primary to-secondary rounded-xl p-5 text-white">
+                    <h3 class="text-xl font-bold mb-2">吉象家生活会员专享福利</h3>
+                    <p class="text-white/90 text-sm mb-4">成为吉象家生活会员，即可享受健康养老服务折扣、商品优惠等多重福利</p>
+                    <div class="flex space-x-3">
+                        <button class="bg-white text-primary text-sm py-2 px-5 rounded-full font-medium hover:bg-opacity-90 transition-colors">
+                            立即加入
+                        </button>
+                        <button class="bg-transparent border border-white text-white text-sm py-2 px-5 rounded-full font-medium hover:bg-white/10 transition-colors">
+                            了解权益
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部导航 -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-4 py-2">
+                <a href="#" class="flex flex-col items-center justify-center py-1 text-text-tertiary">
+                    <i class="fa fa-home text-lg mb-1"></i>
+                    <span class="text-xs">首页</span>
+                </a>
+                <a href="#" class="flex flex-col items-center justify-center py-1 text-primary">
+                    <i class="fa fa-life-ring text-lg mb-1"></i>
+                    <span class="text-xs">生活</span>
+                </a>
+                <a href="#" class="flex flex-col items-center justify-center py-1 text-text-tertiary">
+                    <i class="fa fa-file-text-o text-lg mb-1"></i>
+                    <span class="text-xs">保单</span>
+                </a>
+                <a href="#" class="flex flex-col items-center justify-center py-1 text-text-tertiary">
+                    <i class="fa fa-user-o text-lg mb-1"></i>
+                    <span class="text-xs">我的</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const carouselItems = document.querySelector('.carousel-items');
+            const carouselItem = document.querySelectorAll('.carousel-item');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            let currentIndex = 0;
+            const itemWidth = 100; // 百分比
+            const itemCount = carouselItem.length;
+            
+            // 设置轮播图宽度
+            carouselItems.style.width = `${itemCount * 100}%`;
+            
+            // 更新轮播图位置
+            function updateCarousel() {
+                carouselItems.style.transform = `translateX(-${currentIndex * itemWidth}%)`;
+                
+                // 更新指示器状态
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('bg-white');
+                        indicator.classList.remove('bg-white/50');
+                    } else {
+                        indicator.classList.remove('bg-white');
+                        indicator.classList.add('bg-white/50');
+                    }
+                });
+            }
+            
+            // 下一张
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            }
+            
+            // 点击指示器切换
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+            
+            // 自动轮播
+            let interval = setInterval(nextSlide, 5000);
+            
+            // 鼠标悬停暂停轮播
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(interval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                interval = setInterval(nextSlide, 5000);
+            });
+            
+            // 页面滚动时导航栏样式变化
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('shadow');
+                } else {
+                    header.classList.remove('shadow');
+                }
+            });
+            
+            // 为卡片添加点击效果
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // 模拟点击效果
+                    this.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-4px)';
+                    }, 100);
+                    
+                    // 实际应用中这里会跳转到详情页
+                    const title = this.querySelector('h3')?.textContent || '相关内容';
+                    console.log(`点击了：${title}`);
+                    // window.location.href = 'detail.html';
+                });
+            });
+        });
+    </script>
+
+
+</body></html>
