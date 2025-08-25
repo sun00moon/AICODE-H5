@@ -1,0 +1,222 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太平健康页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        taiping: '#165DFF', // 太平蓝主色
+                        guoshouBg: '#F5F8FA', // 国寿风格浅灰背景
+                        guoshouText: '#333333', // 国寿风格标题色
+                        guoshouSubText: '#666666', // 国寿风格副标题色
+                    },
+                    fontFamily: {
+                        guoshou: ['PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+            .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+            .scroll-hide::-webkit-scrollbar { display: none; }
+        }
+    </style>
+</head>
+<body class="bg-guoshouBg font-guoshou">
+  
+
+    <main class="px-4 pb-20">
+        <!-- 3. 个人信息区 -->
+        <div class="bg-white rounded-lg p-4 my-4 card-shadow">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-taiping/10 flex items-center justify-center">
+                        <i class="fa fa-user-o text-taiping text-xl"></i>
+                    </div>
+                    <span class="text-guoshouText">张*</span>
+                </div>
+                <div class="flex gap-3 text-xs text-guoshouSubText">
+                    <a href="#" class="hover:text-taiping">
+</a>
+                    <a href="#" class="hover:text-taiping">我的服务</a>
+                    <a href="#" class="hover:text-taiping">我的套餐</a>
+                    <a href="#" class="hover:text-taiping">家人权益</a>
+                    <a href="#" class="hover:text-taiping">我的订单</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 太平养老社区与康复医院模块（同层级） -->
+        <div class="mb-6">
+            <h2 class="text-[16px] font-bold text-guoshouText mb-3">养老与康复服务</h2>
+            <div class="grid grid-cols-12 gap-3">
+                <!-- 太平养老社区（更大） -->
+                <div class="col-span-12 md:col-span-8 bg-white rounded-lg overflow-hidden card-shadow transition-transform hover:scale-[1.01]">
+                    <img src="https://p3-search.byteimg.com/obj/pgc-image/256c469caf0c4be3bafa9ec02cf15530" alt="太平养老社区" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-guoshouText font-bold mb-1">太平养老社区</h3>
+                        <p class="text-guoshouSubText text-sm mb-3">舒适居住环境 · 营养膳食服务 · 丰富文娱活动</p>
+                        <button class="text-taiping text-sm font-medium">了解详情 <i class="fa fa-angle-right ml-1"></i></button>
+                    </div>
+                </div>
+                
+                <!-- 太平康复医院（同层级） -->
+                <div class="col-span-12 md:col-span-4 bg-white rounded-lg overflow-hidden card-shadow transition-transform hover:scale-[1.01]">
+                    <img src="https://p3-search.byteimg.com/obj/labis/789717c19482cbe1d3e51112d4ba3459" alt="太平康复医院" class="w-full h-32 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-guoshouText font-bold mb-1">太平康复医院</h3>
+                        <p class="text-guoshouSubText text-sm mb-3">专业康复团队 · 术后康复治疗 · 物理训练</p>
+                        <button class="text-taiping text-sm font-medium">了解详情 <i class="fa fa-angle-right ml-1"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 课程&教程模块（三者同层级） -->
+        <div class="mb-6">
+            <h2 class="text-[16px] font-bold text-guoshouText mb-3">健康讲坛</h2>
+            <div class="flex gap-3 overflow-x-auto scroll-hide pb-2">
+                <!-- 课程卡片1：听专家讲健康（直播内容） -->
+                <div class="bg-white rounded-lg w-48 flex-shrink-0 card-shadow p-3">
+                    <div class="relative">
+                        <img src="https://picsum.photos/id/96/300/200" alt="听专家讲健康" class="w-full h-24 object-cover rounded mb-2">
+                        <div class="absolute top-1 right-1 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded">
+                            直播
+                        </div>
+                    </div>
+                    <h3 class="text-sm text-guoshouText font-medium">听专家讲健康</h3>
+                    <p class="text-xs text-guoshouSubText">每周三 19:00</p>
+                </div>
+                
+                <!-- 课程卡片2：办公运动（健身小课程） -->
+                <div class="bg-white rounded-lg w-48 flex-shrink-0 card-shadow p-3">
+                    <img src="https://picsum.photos/id/237/300/200" alt="办公运动" class="w-full h-24 object-cover rounded mb-2">
+                    <h3 class="text-sm text-guoshouText font-medium">办公运动教程</h3>
+                    <p class="text-xs text-guoshouSubText">10分钟/节</p>
+                </div>
+                
+                <!-- 课程卡片3：减肥教程（营养服务和健身视频） -->
+                <div class="bg-white rounded-lg w-48 flex-shrink-0 card-shadow p-3">
+                    <img src="https://picsum.photos/id/1060/300/200" alt="减肥教程" class="w-full h-24 object-cover rounded mb-2">
+                    <h3 class="text-sm text-guoshouText font-medium">科学减肥指南</h3>
+                    <p class="text-xs text-guoshouSubText">专业营养师+私人教练联合打造</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. 居家养老服务模块 -->
+        <div class="bg-white rounded-lg p-4 mb-6 card-shadow">
+            <h2 class="text-[16px] font-bold text-guoshouText mb-2">居家养老服务</h2>
+            <p class="text-guoshouSubText text-sm mb-4">日常照料/适老化改造等贴心服务</p>
+            <div class="grid grid-cols-3 gap-4">
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-home text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">日常照料</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-wrench text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">适老化改造</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-stethoscope text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">居家问诊</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-medkit text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">家庭药房</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-heartbeat text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">日常护理</span>
+                </div>
+                <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                    <i class="fa fa-gamepad text-taiping text-xl mb-2"></i>
+                    <span class="text-xs text-guoshouText">老年娱乐</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. 健康服务模块与专题广告联合展示 -->
+        <div class="mb-6">
+            <h2 class="text-[16px] font-bold text-guoshouText mb-3">健康服务</h2>
+            <div class="grid grid-cols-1 gap-3">
+                <!-- 科学防癌 中医养生专题广告 -->
+                <div class="bg-gradient-to-r from-taiping to-blue-400 rounded-lg p-4 text-white card-shadow">
+                    <h3 class="font-bold mb-2">科学防癌 中医养生</h3>
+                    <p class="text-sm opacity-90 mb-3">结合现代医学与传统中医理论，为您提供科学的健康之道</p>
+                    <button class="bg-white text-taiping text-xs px-3 py-1 rounded-full font-medium">
+                        了解更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                
+                <!-- 健康服务模块 -->
+                <div class="bg-white rounded-lg p-4 card-shadow">
+                    <div class="grid grid-cols-4 gap-3">
+                        <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                            <i class="fa fa-file-text-o text-taiping text-xl mb-2"></i>
+                            <span class="text-xs text-guoshouText">健康档案</span>
+                        </div>
+                        <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                            <i class="fa fa-calendar-check-o text-taiping text-xl mb-2"></i>
+                            <span class="text-xs text-guoshouText">自助挂号</span>
+                        </div>
+                        <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                            <i class="fa fa-tint text-taiping text-xl mb-2"></i>
+                            <span class="text-xs text-guoshouText">高血压管理</span>
+                        </div>
+                        <div class="flex flex-col items-center p-2 hover:bg-guoshouBg rounded">
+                            <i class="fa fa-check-square-o text-taiping text-xl mb-2"></i>
+                            <span class="text-xs text-guoshouText">健康自测</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. 健康资讯模块 -->
+        <div>
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-[16px] font-bold text-guoshouText">健康资讯</h2>
+                <a href="#" class="text-taiping text-sm">全部 <i class="fa fa-angle-right ml-1"></i></a>
+            </div>
+            <div class="space-y-3">
+                <div class="bg-white rounded-lg flex p-3 card-shadow">
+                    <img src="https://picsum.photos/id/1000/120/120" alt="夏季养生" class="w-20 h-20 object-cover rounded flex-shrink-0">
+                    <div class="ml-3">
+                        <h3 class="text-sm text-guoshouText font-medium">夏季养老防暑小常识</h3>
+                        <p class="text-xs text-guoshouSubText mt-1">2024.08.25 · 1.2万阅读</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg flex p-3 card-shadow">
+                    <img src="https://picsum.photos/id/1002/120/120" alt="老年饮食" class="w-20 h-20 object-cover rounded flex-shrink-0">
+                    <div class="ml-3">
+                        <h3 class="text-sm text-guoshouText font-medium">老年人健康饮食指南</h3>
+                        <p class="text-xs text-guoshouSubText mt-1">2024.08.24 · 0.8万阅读</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- 基础交互脚本 -->
+    <script>
+        // 卡片点击反馈
+        document.querySelectorAll('.card-shadow').forEach(card => {
+            card.addEventListener('click', () => {
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => card.style.transform = 'scale(1)', 150);
+            });
+        });
+    </script>
+
+
+</body></html>
