@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数趣学 - 初中数学游戏化学习</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5', // 主色调：靛蓝色，代表智慧和信任
+                        secondary: '#10B981', // 辅助色：绿色，代表进步和成长
+                        accent: '#F59E0B', // 强调色：琥珀色，代表奖励和成就
+                        neutral: '#F3F4F6', // 中性色：浅灰，用于背景
+                        dark: '#1F2937', // 深色：用于文本
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-shadow {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            }
+            .progress-ring {
+                transform: rotate(-90deg);
+                transform-origin: 50% 50%;
+            }
+            .bounce-light {
+                animation: bounce-light 2s infinite;
+            }
+            @keyframes bounce-light {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-5px);
+                }
+            }
+        }
+    </style>
+</head>
+<body class="bg-neutral min-h-screen font-sans text-dark">
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+                    <i class="fa fa-calculator text-white text-xl"></i>
+                </div>
+                <h1 class="text-xl font-bold text-primary">数趣学</h1>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+                <button class="hidden md:block text-gray-600 hover:text-primary transition-colors">
+                    <i class="fa fa-bell-o text-xl"></i>
+                </button>
+                <div class="relative">
+                    <img src="https://picsum.photos/id/64/200" alt="用户头像" class="w-10 h-10 rounded-full border-2 border-primary">
+                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-white"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 pt-24 pb-16">
+        <!-- 欢迎消息 -->
+        <section class="mb-8">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold">嗨，李明！</h2>
+            <p class="text-gray-600 text-lg">今天继续你的数学之旅吧，已完成2/5的每日目标</p>
+        </section>
+        
+        <!-- 进度概览 -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- 每日目标卡片 -->
+            <div class="bg-white rounded-xl p-6 card-shadow transform hover:scale-[1.02] transition-transform">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-gray-500 font-medium">每日目标</h3>
+                        <p class="text-2xl font-bold mt-1">10分钟 · 5题</p>
+                    </div>
+                    <div class="w-16 h-16 relative">
+                        <svg class="w-full h-full progress-ring">
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="#E5E7EB" stroke-width="4"/>
+                            <circle cx="32" cy="32" r="28" fill="none" stroke="#10B981" stroke-width="4" 
+                                    stroke-dasharray="175.93" stroke-dashoffset="70.37"/>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold">40%</div>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-secondary h-2.5 rounded-full" style="width: 40%"></div>
+                </div>
+            </div>
+            
+            <!-- 连续学习卡片 -->
+            <div class="bg-white rounded-xl p-6 card-shadow transform hover:scale-[1.02] transition-transform">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-gray-500 font-medium">连续学习</h3>
+                        <p class="text-2xl font-bold mt-1">7 天</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+                        <i class="fa fa-fire text-accent text-xl"></i>
+                    </div>
+                </div>
+                <p class="text-gray-600">再坚持3天，获得"数学达人"徽章！</p>
+            </div>
+            
+            <!-- 总积分卡片 -->
+            <div class="bg-white rounded-xl p-6 card-shadow transform hover:scale-[1.02] transition-transform">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-gray-500 font-medium">当前等级</h3>
+                        <p class="text-2xl font-bold mt-1">Lv.5 方程式学徒</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                        <i class="fa fa-star text-primary text-xl"></i>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+                </div>
+                <p class="text-gray-600 text-sm mt-1">650/1000 积分升级</p>
+            </div>
+        </section>
+        
+        <!-- 今日推荐学习 -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">今日推荐</h3>
+                <a href="#" class="text-primary font-medium hover:underline">查看全部</a>
+            </div>
+            
+            <div class="bg-gradient-to-r from-primary/90 to-primary rounded-xl overflow-hidden shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 text-white flex flex-col justify-center">
+                        <span class="inline-block bg-white/20 rounded-full px-4 py-1 text-sm font-medium mb-4 w-fit">
+                            代数基础 · 中级
+                        </span>
+                        <h4 class="text-2xl font-bold mb-3">一元二次方程求解</h4>
+                        <p class="mb-6 text-white/90">学习如何通过因式分解、配方法和求根公式解一元二次方程，包含10个互动练习。</p>
+                        <div class="flex items-center mb-6">
+                            <div class="flex -space-x-2">
+                                <img src="https://picsum.photos/id/91/100" alt="同学头像" class="w-8 h-8 rounded-full border-2 border-white">
+                                <img src="https://picsum.photos/id/92/100" alt="同学头像" class="w-8 h-8 rounded-full border-2 border-white">
+                                <img src="https://picsum.photos/id/93/100" alt="同学头像" class="w-8 h-8 rounded-full border-2 border-white">
+                            </div>
+                            <span class="ml-3 text-sm text-white/80">1,245名同学正在学习</span>
+                        </div>
+                        <button class="bg-white text-primary font-bold py-3 px-6 rounded-lg w-fit hover:bg-opacity-90 transition-colors flex items-center">
+                            开始学习
+                            <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    <div class="hidden md:block relative">
+                        <img src="https://picsum.photos/id/20/600/400" alt="一元二次方程图示" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-l from-primary to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 学习内容分类 -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">数学课程</h3>
+                <a href="#" class="text-primary font-medium hover:underline">更多课程</a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- 代数卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow transform hover:-translate-y-1 transition-all">
+                    <div class="h-36 bg-primary/10 flex items-center justify-center">
+                        <i class="fa fa-superscript text-primary text-5xl"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">代数基础</h4>
+                        <p class="text-gray-600 text-sm mb-4">代数式、方程与不等式</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">24个单元</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-accent text-xs"></i>
+                                <span class="text-xs ml-1">4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 几何卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow transform hover:-translate-y-1 transition-all">
+                    <div class="h-36 bg-secondary/10 flex items-center justify-center">
+                        <i class="fa fa-cubes text-secondary text-5xl"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">平面几何</h4>
+                        <p class="text-gray-600 text-sm mb-4">三角形、四边形与圆</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">18个单元</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-accent text-xs"></i>
+                                <span class="text-xs ml-1">4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 函数卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow transform hover:-translate-y-1 transition-all">
+                    <div class="h-36 bg-accent/10 flex items-center justify-center">
+                        <i class="fa fa-line-chart text-accent text-5xl"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">函数初步</h4>
+                        <p class="text-gray-600 text-sm mb-4">一次函数与二次函数</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">15个单元</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-accent text-xs"></i>
+                                <span class="text-xs ml-1">4.6</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 概率统计卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow transform hover:-translate-y-1 transition-all">
+                    <div class="h-36 bg-purple-100 flex items-center justify-center">
+                        <i class="fa fa-pie-chart text-purple-600 text-5xl"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg mb-2">概率统计</h4>
+                        <p class="text-gray-600 text-sm mb-4">数据与可能性分析</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-gray-500">12个单元</span>
+                            <div class="flex items-center">
+                                <i class="fa fa-star text-accent text-xs"></i>
+                                <span class="text-xs ml-1">4.5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 题目演示区 -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">互动题目演示</h3>
+                <span class="text-sm text-gray-500">一元二次方程单元 · 例题</span>
+            </div>
+            
+            <div class="bg-white rounded-xl p-6 md:p-8 card-shadow">
+                <div class="flex items-center mb-2">
+                    <span class="bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full">练习 3/10</span>
+                    <div class="ml-auto flex">
+                        <i class="fa fa-heart-o text-gray-300"></i>
+                        <i class="fa fa-heart-o text-gray-300 ml-1"></i>
+                        <i class="fa fa-heart text-red-500 ml-1"></i>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold mb-4">求解方程：x² + 5x + 6 = 0</h4>
+                    <p class="text-gray-600 mb-6">请选择正确的解法和答案</p>
+                    
+                    <!-- 选项区域 -->
+                    <div class="space-y-3">
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-primary/5 cursor-pointer transition-colors">
+                            <p class="font-medium">A. 因式分解：(x+2)(x+3)=0 → x=2 或 x=3</p>
+                        </div>
+                        <div class="border-2 border-primary bg-primary/5 rounded-lg p-4 cursor-pointer transition-colors">
+                            <p class="font-medium">B. 因式分解：(x+2)(x+3)=0 → x=-2 或 x=-3</p>
+                            <div class="mt-2 flex items-center text-secondary">
+                                <i class="fa fa-check-circle mr-2"></i>
+                                <span class="text-sm">正确答案！</span>
+                            </div>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-primary/5 cursor-pointer transition-colors">
+                            <p class="font-medium">C. 求根公式：x = [-5±√(25-24)]/2 → x=1 或 x=6</p>
+                        </div>
+                        <div class="border border-gray-200 rounded-lg p-4 hover:border-primary hover:bg-primary/5 cursor-pointer transition-colors">
+                            <p class="font-medium">D. 配方法：(x+2.5)²=0.25 → x=3 或 x=2</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 解析区域 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                    <h5 class="font-bold mb-2 flex items-center">
+                        <i class="fa fa-lightbulb-o text-accent mr-2"></i>
+                        解题步骤
+                    </h5>
+                    <ol class="list-decimal pl-5 space-y-2 text-gray-700 text-sm">
+                        <li>观察方程 x² + 5x + 6 = 0，尝试因式分解</li>
+                        <li>寻找两个数，它们的和为5，积为6 → 2和3</li>
+                        <li>因此方程可分解为 (x+2)(x+3) = 0</li>
+                        <li>令每个因式等于0，得到 x+2=0 或 x+3=0</li>
+                        <li>解得 x=-2 或 x=-3</li>
+                    </ol>
+                </div>
+                
+                <div class="mt-6 flex justify-end">
+                    <button class="bg-primary text-white font-medium py-2 px-6 rounded-lg hover:bg-primary/90 transition-colors flex items-center">
+                        下一题
+                        <i class="fa fa-chevron-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 学习统计 -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">学习统计</h3>
+                <div class="flex space-x-2">
+                    <button class="bg-primary text-white text-sm py-1 px-3 rounded-full">周</button>
+                    <button class="bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full hover:bg-gray-300 transition-colors">月</button>
+                    <button class="bg-gray-200 text-gray-700 text-sm py-1 px-3 rounded-full hover:bg-gray-300 transition-colors">年</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- 学习时间图表 -->
+                <div class="lg:col-span-2 bg-white rounded-xl p-6 card-shadow">
+                    <h4 class="font-bold mb-4">每周学习时间</h4>
+                    <div class="h-64">
+                        <canvas id="studyTimeChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- 正确率统计 -->
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <h4 class="font-bold mb-4">正确率分布</h4>
+                    <div class="h-64">
+                        <canvas id="accuracyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 底部导航栏 -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 md:hidden">
+        <div class="flex justify-around">
+            <a href="#" class="flex flex-col items-center text-primary">
+                <i class="fa fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-primary transition-colors">
+                <i class="fa fa-book text-xl"></i>
+                <span class="text-xs mt-1">课程</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-primary transition-colors">
+                <i class="fa fa-trophy text-xl"></i>
+                <span class="text-xs mt-1">成就</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500 hover:text-primary transition-colors">
+                <i class="fa fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // 页面加载完成后初始化图表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 学习时间图表
+            const timeCtx = document.getElementById('studyTimeChart').getContext('2d');
+            new Chart(timeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    datasets: [{
+                        label: '学习时间（分钟）',
+                        data: [15, 20, 10, 25, 30, 45, 10],
+                        backgroundColor: '#4F46E5',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 正确率图表
+            const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
+            new Chart(accuracyCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['代数', '几何', '函数', '概率'],
+                    datasets: [{
+                        data: [85, 72, 68, 90],
+                        backgroundColor: [
+                            '#4F46E5',
+                            '#10B981',
+                            '#F59E0B',
+                            '#8B5CF6'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    cutout: '65%'
+                }
+            });
+            
+            // 滚动时导航栏效果
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 10) {
+                    header.classList.add('py-2', 'shadow');
+                    header.classList.remove('py-3', 'shadow-sm');
+                } else {
+                    header.classList.add('py-3', 'shadow-sm');
+                    header.classList.remove('py-2', 'shadow');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
